@@ -3,159 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank Transfer | Glamour</title>
+    <title>Final Step: Payment | Glamour</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --gold: #dbb445; --dark: #000; --card: #0a0a0a; --glass: rgba(255, 255, 255, 0.05); }
-        body { font-family: 'Inter', sans-serif; background: var(--dark); color: #fff; margin: 0; padding: 20px; }
+        :root { --gold: #dbb445; --dark: #000; --card: #0d0d0d; --glass: rgba(255, 255, 255, 0.03); }
+        body { font-family: 'Inter', sans-serif; background: var(--dark); color: #fff; margin: 0; padding: 15px; }
         
-        .payment-container { max-width: 450px; margin: 20px auto; }
-        
-        /* Header Section */
-        .welcome-header { text-align: center; margin-bottom: 30px; }
-        .welcome-header h2 { font-weight: 900; letter-spacing: 1px; margin-bottom: 5px; }
-        .welcome-header p { color: #888; font-size: 14px; }
-        .user-tag { color: var(--gold); border: 1px solid var(--gold); padding: 2px 10px; border-radius: 20px; font-size: 12px; }
+        .container { max-width: 450px; margin: 0 auto; padding-top: 20px; }
 
-        /* Amount Card */
-        .amount-card {
-            background: linear-gradient(135deg, #111 0%, #000 100%);
+        /* Timer Section */
+        .timer-box { 
+            background: #ff3e3e15; 
+            border: 1px solid #ff3e3e30; 
+            padding: 12px; 
+            border-radius: 12px; 
+            text-align: center; 
+            margin-bottom: 25px;
+            color: #ff5f5f;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* Hero Card */
+        .hero-card {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .hero-card h1 { font-size: 24px; font-weight: 900; margin-bottom: 8px; }
+        .hero-card p { color: #888; font-size: 14px; }
+        .user-highlight { color: var(--gold); }
+
+        /* Amount Display */
+        .price-tag {
+            background: var(--card);
             border: 1px solid var(--glass);
             border-radius: 20px;
             padding: 25px;
             text-align: center;
             margin-bottom: 25px;
         }
-        .amt-label { color: #666; font-size: 12px; font-weight: 700; text-transform: uppercase; }
-        .amt-value { font-size: 36px; font-weight: 900; color: #fff; margin: 10px 0; }
+        .price-label { font-size: 12px; color: #666; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .price-amt { font-size: 38px; font-weight: 900; color: #fff; margin-top: 10px; }
 
-        /* Bank Details Box */
-        .bank-box {
+        /* Bank Details Card */
+        .bank-card {
             background: var(--card);
             border: 1px solid var(--glass);
             border-radius: 20px;
             padding: 20px;
         }
-        .bank-title { font-size: 14px; font-weight: 700; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .bank-header { font-size: 13px; font-weight: 800; color: var(--gold); border-bottom: 1px solid var(--glass); padding-bottom: 15px; margin-bottom: 15px; }
         
-        .info-row { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 15px 0; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
-        }
-        .info-row:last-child { border-bottom: none; }
-        .info-label { color: #888; font-size: 13px; }
-        .info-value { font-weight: 700; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .detail-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .detail-row:last-child { border-bottom: none; }
+        .label { color: #777; font-size: 13px; }
+        .val { font-weight: 700; color: #fff; font-size: 14px; display: flex; align-items: center; gap: 8px; }
         
-        .copy-btn { color: var(--gold); cursor: pointer; transition: 0.3s; padding: 5px; }
-        .copy-btn:hover { opacity: 0.7; }
+        .copy-icon { color: var(--gold); cursor: pointer; font-size: 14px; transition: 0.2s; }
+        .copy-icon:active { transform: scale(0.8); }
 
-        /* Confirmation Button */
-        .confirm-btn {
+        /* Narration Highlight */
+        .narration-box {
+            background: rgba(219, 180, 69, 0.07);
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 10px;
+            border: 1px dashed var(--gold);
+        }
+
+        .btn-confirm {
             background: var(--gold);
             color: #000;
             width: 100%;
             border: none;
-            padding: 18px;
-            border-radius: 15px;
+            padding: 20px;
+            border-radius: 16px;
             font-weight: 900;
             font-size: 16px;
             text-transform: uppercase;
             margin-top: 30px;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(219, 180, 69, 0.2);
+            box-shadow: 0 10px 30px rgba(219, 180, 69, 0.15);
         }
 
-        .notice { font-size: 12px; color: #555; text-align: center; margin-top: 20px; line-height: 1.6; }
+        .help-text { font-size: 11px; color: #555; text-align: center; margin-top: 20px; line-height: 1.5; }
     </style>
 </head>
 <body>
 
-<div class="payment-container">
-    <div class="welcome-header">
-        <h2>TRANSFER FUNDS</h2>
-        <p>Hello <span class="user-tag" id="user-display">@user</span>, pay exactly the amount below.</p>
+<div class="container">
+    <div class="timer-box">
+        <i class="fa-solid fa-clock"></i> Session expires in: <span id="timer">10:00</span>
     </div>
 
-    <div class="amount-card">
-        <div class="amt-label">Total to Pay</div>
-        <div class="amt-value" id="total-amt">---</div>
+    <div class="hero-card">
+        <h1>Transfer Funds</h1>
+        <p>Complete payment for <span class="user-highlight" id="user-name">@User</span></p>
     </div>
 
-    <div class="bank-box">
-        <div class="bank-title"><i class="fa-solid fa-building-columns"></i> ACCOUNT DETAILS</div>
+    <div class="price-tag">
+        <div class="price-label">Exact Amount to Pay</div>
+        <div class="price-amt" id="final-amt">₦0.00</div>
+    </div>
+
+    <div class="bank-card">
+        <div class="bank-header">BANK ACCOUNT DETAILS</div>
         
-        <div class="info-row">
-            <span class="info-label">Bank Name</span>
-            <span class="info-value">Moniepoint MFB</span>
+        <div class="detail-row">
+            <span class="label">Bank Name</span>
+            <span class="val">Moniepoint MFB</span>
         </div>
 
-        <div class="info-row">
-            <span class="info-label">Account Number</span>
-            <div class="info-value">
-                <span id="acc-num">8148902233</span> 
-                <i class="fa-regular fa-copy copy-btn" onclick="copy('acc-num')"></i>
-            </div>
+        <div class="detail-row">
+            <span class="label">Account Number</span>
+            <span class="val">
+                <span id="acc-no">8148902233</span> 
+                <i class="fa-regular fa-copy copy-icon" onclick="copy('acc-no')"></i>
+            </span>
         </div>
 
-        <div class="info-row">
-            <span class="info-label">Account Name</span>
-            <div class="info-value">
-                <span id="acc-name">GLAMOUR TECH ENTERPRISE</span> 
-                <i class="fa-regular fa-copy copy-btn" onclick="copy('acc-name')"></i>
-            </div>
+        <div class="detail-row">
+            <span class="label">Account Name</span>
+            <span class="val">
+                <span id="acc-name">GLAMOUR ENTERPRISE</span> 
+                <i class="fa-regular fa-copy copy-icon" onclick="copy('acc-name')"></i>
+            </span>
         </div>
 
-        <div class="info-row" style="background: rgba(219, 180, 69, 0.05); margin: 10px -10px; padding: 15px 10px; border-radius: 10px;">
-            <span class="info-label" style="color: var(--gold);">Narration</span>
-            <div class="info-value">
-                <span id="narration-val">---</span> 
-                <i class="fa-regular fa-copy copy-icon" onclick="copy('narration-val')"></i>
+        <div class="narration-box">
+            <div class="detail-row" style="border:none; padding:0;">
+                <span class="label" style="color: var(--gold);">Payment Narration</span>
+                <span class="val" style="color: var(--gold);">
+                    <span id="narrator">USER_GLAM</span> 
+                    <i class="fa-regular fa-copy copy-icon" onclick="copy('narrator')"></i>
+                </span>
             </div>
         </div>
     </div>
 
-    <button class="confirm-btn" onclick="confirmPayment()">I HAVE MADE THE TRANSFER</button>
-
-    <p class="notice">
-        <b>IMPORTANT:</b> Ensure you use the <b>Narration</b> provided above during the transfer. Your account will be activated automatically within 5-10 minutes after verification.
+    <button class="btn-confirm" onclick="done()">I HAVE SENT THE MONEY</button>
+    
+    <p class="help-text">
+        Once transfer is made, click the button above. <br>
+        Our system will verify the <b>Narration</b> and activate your account.
     </p>
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const params = new URLSearchParams(window.location.search);
-        const user = params.get('user') || "Member";
-        const amt = params.get('amount') || "14000";
-        const country = params.get('country') || "Nigeria";
+// 1. DATA SETUP
+document.addEventListener('DOMContentLoaded', () => {
+    const user = localStorage.getItem('glamour_username') || "Member";
+    const country = localStorage.getItem('glamour_country') || "Nigeria";
 
-        // Dynamic Data
-        document.getElementById('user-display').innerText = "@" + user;
-        document.getElementById('narration-val').innerText = user.toUpperCase() + "_GLAM";
+    // Set Name & Narration
+    document.getElementById('user-name').innerText = "@" + user.replace('@','');
+    document.getElementById('narrator').innerText = user.toUpperCase().replace('@','') + "_GLAM";
 
-        // Currency Formatting
-        const symbols = { 'Nigeria': '₦', 'Ghana': 'GHS ', 'Cameroon': 'XAF ' };
-        const sym = symbols[country] || '₦';
-        document.getElementById('total-amt').innerText = sym + parseInt(amt).toLocaleString();
-    });
+    // Dynamic Price based on country
+    const pricing = {
+        'Nigeria': '₦14,000',
+        'Ghana': '250 GHS',
+        'Cameroon': '14,000 XAF'
+    };
+    document.getElementById('final-amt').innerText = pricing[country] || '₦14,000';
 
-    function copy(id) {
-        const text = document.getElementById(id).innerText;
-        navigator.clipboard.writeText(text);
-        
-        // Simple visual feedback
-        const btn = event.target;
-        btn.classList.replace('fa-regular', 'fa-solid');
-        setTimeout(() => btn.classList.replace('fa-solid', 'fa-regular'), 1500);
-    }
+    // 2. START TIMER (10 Minutes)
+    startTimer(600, document.getElementById('timer'));
+});
 
-    function confirmPayment() {
-        alert("Transaction Recorded! We are verifying your transfer. Please do not close this page.");
-        // You can redirect to a 'waiting' page or dashboard here
-    }
+// 3. TIMER LOGIC
+function startTimer(duration, display) {
+    let timer = duration, minutes, seconds;
+    setInterval(() => {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = 0;
+            alert("Session expired. Please refresh the page.");
+        }
+    }, 1000);
+}
+
+// 4. UTILITIES
+function copy(id) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text);
+    alert("Copied to clipboard!");
+}
+
+function done() {
+    alert("Payment Received! Redirecting to verification dashboard...");
+}
 </script>
 
 </body>
