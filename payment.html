@@ -204,29 +204,32 @@ function copy(id) {
     const text = document.getElementById(id).innerText;
     navigator.clipboard.writeText(text);
     alert("Copied: " + text);
-}function done() {
-    // 1. Get the data from the page
+}
+    function done() {
+    // 1. Pull the data directly from your page elements
     const user = document.getElementById('user-name').innerText;
     const amount = document.getElementById('final-amt').innerText;
     const narration = document.getElementById('narrator').innerText;
     const country = localStorage.getItem('glamour_country') || "Nigeria";
 
-    // 2. Your Telegram Username (Change 'YourTelegramHandle' to your real username)
+    // 2. Your Verified Username
     const telegramHandle = "GLAMOUR_OFFICIAL_P"; 
 
-    // 3. Create a sharp message for the user to send
-    const message = `Hello Admin, I have just made a payment for my Glamour account activation.%0A%0A` +
-                    `👤 *Username:* ${user}%0A` +
-                    `💰 *Amount:* ${amount}%0A` +
-                    `🌍 *Country:* ${country}%0A` +
-                    `📝 *Narration:* ${narration}%0A%0A` +
-                    `Please verify and activate my account.`;
+    // 3. Construct the Message
+    const message = `Hello Admin, I have just made a payment for my Glamour account activation.
 
-    // 4. Redirect to Telegram
-    const telegramUrl = `https://t.me/${telegramHandle}?text=${message}`;
+👤 Username: ${user}
+💰 Amount: ${amount}
+🌍 Country: ${country}
+📝 Narration: ${narration}
+
+Please verify and activate my account.`;
+
+    // 4. Use encodeURIComponent to prevent URL crashes
+    const safeMessage = encodeURIComponent(message);
+    const telegramUrl = `https://t.me/${telegramHandle}?text=${safeMessage}`;
     
-    // Show a quick loading alert before jumping to Telegram
-    alert("Redirecting to Telegram for payment verification...");
+    // Redirect
     window.location.href = telegramUrl;
 }
 
