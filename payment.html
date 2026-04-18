@@ -12,7 +12,6 @@
         
         .container { max-width: 450px; margin: 0 auto; padding-top: 20px; }
 
-        /* Timer Section */
         .timer-box { 
             background: #ff3e3e15; 
             border: 1px solid #ff3e3e30; 
@@ -24,8 +23,6 @@
             font-weight: 700;
             font-size: 14px;
         }
-
-        /* Hero Card */
         .hero-card {
             text-align: center;
             margin-bottom: 30px;
@@ -34,7 +31,6 @@
         .hero-card p { color: #888; font-size: 14px; }
         .user-highlight { color: var(--gold); }
 
-        /* Amount Display */
         .price-tag {
             background: var(--card);
             border: 1px solid var(--glass);
@@ -46,7 +42,6 @@
         .price-label { font-size: 12px; color: #666; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
         .price-amt { font-size: 38px; font-weight: 900; color: #fff; margin-top: 10px; }
 
-        /* Bank Details Card */
         .bank-card {
             background: var(--card);
             border: 1px solid var(--glass);
@@ -63,7 +58,7 @@
         .copy-icon { color: var(--gold); cursor: pointer; font-size: 14px; transition: 0.2s; }
         .copy-icon:active { transform: scale(0.8); }
 
-        /* Narration Highlight */
+    
         .narration-box {
             background: rgba(219, 180, 69, 0.07);
             padding: 15px;
@@ -151,51 +146,66 @@
 </div>
 
 <script>
-// 1. DATA SETUP
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Get Data
     const user = localStorage.getItem('glamour_username') || "Member";
     const country = localStorage.getItem('glamour_country') || "Nigeria";
 
-    // Set Name & Narration
+    // 2. Personalize Header & Narration
     document.getElementById('user-name').innerText = "@" + user.replace('@','');
     document.getElementById('narrator').innerText = user.toUpperCase().replace('@','') + "_GLAM";
 
-    // Dynamic Price based on country
-    const pricing = {
-        'Nigeria': '₦14,000',
-        'Ghana': '250 GHS',
-        'Cameroon': '14,000 XAF'
+    // 3. DEFINE BANK DETAILS PER COUNTRY
+    const bankData = {
+        'Nigeria': {
+            price: '₦14,000',
+            bank: 'Moniepoint MFB',
+            accNo: '8148902233',
+            accName: 'GLAMOUR ENTERPRISE'
+        },
+        'Ghana': {
+            price: '250 GHS',
+            bank: 'MTN Mobile Money', // Or your preferred Ghana bank
+            accNo: '054XXXXXXX',
+            accName: 'GLAMOUR GHANA'
+        },
+        'Cameroon': {
+            price: '14,000 XAF',
+            bank: 'Orange Money / MTN', 
+            accNo: '67XXXXXXX',
+            accName: 'GLAMOUR CAMEROON'
+        }
     };
-    document.getElementById('final-amt').innerText = pricing[country] || '₦14,000';
 
-    // 2. START TIMER (10 Minutes)
+    // 4. APPLY THE DETAILS
+    const currentSetup = bankData[country] || bankData['Nigeria'];
+
+    document.getElementById('final-amt').innerText = currentSetup.price;
+    document.querySelector('.detail-row:nth-child(2) .val').innerText = currentSetup.bank; // Updates Bank Name
+    document.getElementById('acc-no').innerText = currentSetup.accNo;
+    document.getElementById('acc-name').innerText = currentSetup.accName;
+
+    // Start 10-minute timer
     startTimer(600, document.getElementById('timer'));
 });
 
-// 3. TIMER LOGIC
+// Timer and Copy functions remain the same...
 function startTimer(duration, display) {
     let timer = duration, minutes, seconds;
     setInterval(() => {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
-
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
-
         display.textContent = minutes + ":" + seconds;
-
-        if (--timer < 0) {
-            timer = 0;
-            alert("Session expired. Please refresh the page.");
-        }
+        if (--timer < 0) { timer = 0; }
     }, 1000);
 }
 
-// 4. UTILITIES
 function copy(id) {
     const text = document.getElementById(id).innerText;
     navigator.clipboard.writeText(text);
-    alert("Copied to clipboard!");
+    alert("Copied: " + text);
 }
 
 function done() {
