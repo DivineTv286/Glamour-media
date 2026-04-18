@@ -148,11 +148,9 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Get Data
     const user = localStorage.getItem('glamour_username') || "Member";
     const country = localStorage.getItem('glamour_country') || "Nigeria";
 
-    // 2. Personalize Header & Narration
     document.getElementById('user-name').innerText = "@" + user.replace('@','');
     document.getElementById('narrator').innerText = user.toUpperCase().replace('@','') + "_GLAM";
 
@@ -182,12 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.detail-row:nth-child(2) .val').innerText = currentSetup.bank; // Updates Bank Name
     document.getElementById('acc-no').innerText = currentSetup.accNo;
     document.getElementById('acc-name').innerText = currentSetup.accName;
-
-    // Start 10-minute timer
     startTimer(600, document.getElementById('timer'));
 });
-
-// Timer and Copy functions remain the same...
 function startTimer(duration, display) {
     let timer = duration, minutes, seconds;
     setInterval(() => {
@@ -206,16 +200,15 @@ function copy(id) {
     alert("Copied: " + text);
 }
     function done() {
-    // 1. Pull the data directly from your page elements
     const user = document.getElementById('user-name').innerText;
     const amount = document.getElementById('final-amt').innerText;
     const narration = document.getElementById('narrator').innerText;
     const country = localStorage.getItem('glamour_country') || "Nigeria";
 
-    // 2. Your Verified Username
+    
     const telegramHandle = "GLAMOUR_OFFICIAL_P"; 
 
-    // 3. Construct the Message
+    
     const message = `Hello Admin, I have just made a payment for my Glamour account activation.
 
 👤 Username: ${user}
@@ -225,11 +218,9 @@ function copy(id) {
 
 Please verify and activate my account.`;
 
-    // 4. Use encodeURIComponent to prevent URL crashes
     const safeMessage = encodeURIComponent(message);
     const telegramUrl = `https://t.me/${telegramHandle}?text=${safeMessage}`;
-    
-    // Redirect
+
     window.location.href = telegramUrl;
 }
 
