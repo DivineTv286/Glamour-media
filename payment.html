@@ -206,11 +206,32 @@ function copy(id) {
     const text = document.getElementById(id).innerText;
     navigator.clipboard.writeText(text);
     alert("Copied: " + text);
+}function done() {
+    // 1. Get the data from the page
+    const user = document.getElementById('user-name').innerText;
+    const amount = document.getElementById('final-amt').innerText;
+    const narration = document.getElementById('narrator').innerText;
+    const country = localStorage.getItem('glamour_country') || "Nigeria";
+
+    // 2. Your Telegram Username (Change 'YourTelegramHandle' to your real username)
+    const telegramHandle = "YourTelegramHandle"; 
+
+    // 3. Create a sharp message for the user to send
+    const message = `Hello Admin, I have just made a payment for my Glamour account activation.%0A%0A` +
+                    `👤 *Username:* ${user}%0A` +
+                    `💰 *Amount:* ${amount}%0A` +
+                    `🌍 *Country:* ${country}%0A` +
+                    `📝 *Narration:* ${narration}%0A%0A` +
+                    `Please verify and activate my account.`;
+
+    // 4. Redirect to Telegram
+    const telegramUrl = `https://t.me/${telegramHandle}?text=${message}`;
+    
+    // Show a quick loading alert before jumping to Telegram
+    alert("Redirecting to Telegram for payment verification...");
+    window.location.href = telegramUrl;
 }
 
-function done() {
-    alert("Payment Received! Redirecting to verification dashboard...");
-}
 </script>
 
 </body>
