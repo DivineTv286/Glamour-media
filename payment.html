@@ -156,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('user-name').innerText = "@" + user.replace('@','');
     document.getElementById('narrator').innerText = user.toUpperCase().replace('@','') + "_GLAM";
 
-    // 3. DEFINE BANK DETAILS PER COUNTRY
     const bankData = {
         'Nigeria': {
             price: '₦14,000',
@@ -166,19 +165,17 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'Ghana': {
             price: '250 GHS',
-            bank: 'MTN Mobile Money', // Or your preferred Ghana bank
-            accNo: '054XXXXXXX',
-            accName: 'GLAMOUR GHANA'
+            bank: 'MTN ',
+            accNo: '0544675418',
+            accName: 'DELADEM HOSUNU'
         },
         'Cameroon': {
             price: '14,000 XAF',
-            bank: 'Orange Money / MTN', 
-            accNo: '67XXXXXXX',
-            accName: 'GLAMOUR CAMEROON'
+            bank: 'MTN MoMo', 
+            accNo: '678720601',
+            accName: 'JOYCELINE MANYOH'
         }
     };
-
-    // 4. APPLY THE DETAILS
     const currentSetup = bankData[country] || bankData['Nigeria'];
 
     document.getElementById('final-amt').innerText = currentSetup.price;
@@ -215,7 +212,7 @@ function copy(id) {
     const country = localStorage.getItem('glamour_country') || "Nigeria";
 
     // 2. Your Telegram Username (Change 'YourTelegramHandle' to your real username)
-    const telegramHandle = "https://t.me/GLAMOUR_OFFICIAL_P"; 
+    const telegramHandle = "GLAMOUR_OFFICIAL_P"; 
 
     // 3. Create a sharp message for the user to send
     const message = `Hello Admin, I have just made a payment for my Glamour account activation.%0A%0A` +
