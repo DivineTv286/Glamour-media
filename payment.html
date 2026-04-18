@@ -3,84 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Payment | Glamour</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Bank Transfer | Glamour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --gold: #dbb445; --dark: #000; --card: #0a0a0a; }
-        body { font-family: 'Inter', sans-serif; background: var(--dark); color: #fff; margin: 0; padding: 20px; text-align: center; }
+        :root { --gold: #dbb445; --dark: #000; --card: #0a0a0a; --glass: rgba(255, 255, 255, 0.05); }
+        body { font-family: 'Inter', sans-serif; background: var(--dark); color: #fff; margin: 0; padding: 20px; }
         
-        .payment-box { max-width: 450px; margin: 40px auto; background: var(--card); border: 1px solid rgba(255,255,255,0.05); border-radius: 25px; padding: 30px; }
+        .payment-container { max-width: 450px; margin: 20px auto; }
         
-        .narrator-box { background: rgba(219, 180, 69, 0.1); padding: 15px; border-radius: 15px; margin-bottom: 25px; border: 1px dashed var(--gold); }
-        .username-text { color: var(--gold); font-weight: 900; text-transform: uppercase; }
+        /* Header Section */
+        .welcome-header { text-align: center; margin-bottom: 30px; }
+        .welcome-header h2 { font-weight: 900; letter-spacing: 1px; margin-bottom: 5px; }
+        .welcome-header p { color: #888; font-size: 14px; }
+        .user-tag { color: var(--gold); border: 1px solid var(--gold); padding: 2px 10px; border-radius: 20px; font-size: 12px; }
 
-        .amount-display { font-size: 32px; font-weight: 900; margin: 20px 0; color: #fff; }
+        /* Amount Card */
+        .amount-card {
+            background: linear-gradient(135deg, #111 0%, #000 100%);
+            border: 1px solid var(--glass);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .amt-label { color: #666; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+        .amt-value { font-size: 36px; font-weight: 900; color: #fff; margin: 10px 0; }
+
+        /* Bank Details Box */
+        .bank-box {
+            background: var(--card);
+            border: 1px solid var(--glass);
+            border-radius: 20px;
+            padding: 20px;
+        }
+        .bank-title { font-size: 14px; font-weight: 700; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
         
-        .instruction { color: #888; font-size: 14px; margin-bottom: 20px; }
+        .info-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 0; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+        }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { color: #888; font-size: 13px; }
+        .info-value { font-weight: 700; color: #fff; display: flex; align-items: center; gap: 10px; }
+        
+        .copy-btn { color: var(--gold); cursor: pointer; transition: 0.3s; padding: 5px; }
+        .copy-btn:hover { opacity: 0.7; }
 
-        .pay-detail-row { background: #111; padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .label { color: #666; font-size: 12px; text-transform: uppercase; font-weight: 700; }
-        .value { color: #fff; font-weight: 700; }
+        /* Confirmation Button */
+        .confirm-btn {
+            background: var(--gold);
+            color: #000;
+            width: 100%;
+            border: none;
+            padding: 18px;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-top: 30px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(219, 180, 69, 0.2);
+        }
 
-        .copy-icon { color: var(--gold); cursor: pointer; margin-left: 10px; }
-
-        .done-btn { background: var(--gold); color: #000; width: 100%; border: none; padding: 18px; border-radius: 15px; font-weight: 900; text-transform: uppercase; margin-top: 20px; cursor: pointer; }
+        .notice { font-size: 12px; color: #555; text-align: center; margin-top: 20px; line-height: 1.6; }
     </style>
 </head>
 <body>
 
-    <div class="payment-box">
-        <div class="narrator-box">
-            👋 Welcome, <span class="username-text" id="user-name">User</span>!
-        </div>
-
-        <p class="instruction">Make payment for your account activation</p>
-        <div class="amount-display" id="total-amt">---</div>
-
-        <div class="pay-detail-row">
-            <div>
-                <div class="label">Payment Reference</div>
-                <div class="value" id="ref-code">GLAM-77329</div>
-            </div>
-            <i class="fa-regular fa-copy copy-icon" onclick="copy('ref-code')"></i>
-        </div>
-
-        <div class="pay-detail-row">
-            <div>
-                <div class="label">Narration / Remark</div>
-                <div class="value" id="narrator">User_Activation</div>
-            </div>
-            <i class="fa-regular fa-copy copy-icon" onclick="copy('narrator')"></i>
-        </div>
-
-        <p style="font-size: 12px; color: #555; margin-top: 20px;">Ensure you use your <b>Username</b> as the payment narration to speed up approval.</p>
-
-        <button class="done-btn" onclick="alert('Verification in progress...')">I Have Made Payment</button>
+<div class="payment-container">
+    <div class="welcome-header">
+        <h2>TRANSFER FUNDS</h2>
+        <p>Hello <span class="user-tag" id="user-display">@user</span>, pay exactly the amount below.</p>
     </div>
 
-    <script>
-        // Get data from URL
+    <div class="amount-card">
+        <div class="amt-label">Total to Pay</div>
+        <div class="amt-value" id="total-amt">---</div>
+    </div>
+
+    <div class="bank-box">
+        <div class="bank-title"><i class="fa-solid fa-building-columns"></i> ACCOUNT DETAILS</div>
+        
+        <div class="info-row">
+            <span class="info-label">Bank Name</span>
+            <span class="info-value">Moniepoint MFB</span>
+        </div>
+
+        <div class="info-row">
+            <span class="info-label">Account Number</span>
+            <div class="info-value">
+                <span id="acc-num">8148902233</span> 
+                <i class="fa-regular fa-copy copy-btn" onclick="copy('acc-num')"></i>
+            </div>
+        </div>
+
+        <div class="info-row">
+            <span class="info-label">Account Name</span>
+            <div class="info-value">
+                <span id="acc-name">GLAMOUR TECH ENTERPRISE</span> 
+                <i class="fa-regular fa-copy copy-btn" onclick="copy('acc-name')"></i>
+            </div>
+        </div>
+
+        <div class="info-row" style="background: rgba(219, 180, 69, 0.05); margin: 10px -10px; padding: 15px 10px; border-radius: 10px;">
+            <span class="info-label" style="color: var(--gold);">Narration</span>
+            <div class="info-value">
+                <span id="narration-val">---</span> 
+                <i class="fa-regular fa-copy copy-icon" onclick="copy('narration-val')"></i>
+            </div>
+        </div>
+    </div>
+
+    <button class="confirm-btn" onclick="confirmPayment()">I HAVE MADE THE TRANSFER</button>
+
+    <p class="notice">
+        <b>IMPORTANT:</b> Ensure you use the <b>Narration</b> provided above during the transfer. Your account will be activated automatically within 5-10 minutes after verification.
+    </p>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
         const params = new URLSearchParams(window.location.search);
         const user = params.get('user') || "Member";
         const amt = params.get('amount') || "14000";
         const country = params.get('country') || "Nigeria";
 
-        // Map Currency symbols
-        const currencyMap = { 'Nigeria': '₦', 'Ghana': 'GHS ', 'Cameroon': 'XAF ' };
-        const symbol = currencyMap[country] || '₦';
+        // Dynamic Data
+        document.getElementById('user-display').innerText = "@" + user;
+        document.getElementById('narration-val').innerText = user.toUpperCase() + "_GLAM";
 
-        // Update Page
-        document.getElementById('user-name').innerText = user;
-        document.getElementById('total-amt').innerText = symbol + parseInt(amt).toLocaleString();
-        document.getElementById('narrator').innerText = user + "_GLAM";
+        // Currency Formatting
+        const symbols = { 'Nigeria': '₦', 'Ghana': 'GHS ', 'Cameroon': 'XAF ' };
+        const sym = symbols[country] || '₦';
+        document.getElementById('total-amt').innerText = sym + parseInt(amt).toLocaleString();
+    });
 
-        // Copy Function
-        function copy(id) {
-            const text = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(text);
-            alert("Copied: " + text);
-        }
-    </script>
+    function copy(id) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text);
+        
+        // Simple visual feedback
+        const btn = event.target;
+        btn.classList.replace('fa-regular', 'fa-solid');
+        setTimeout(() => btn.classList.replace('fa-solid', 'fa-regular'), 1500);
+    }
+
+    function confirmPayment() {
+        alert("Transaction Recorded! We are verifying your transfer. Please do not close this page.");
+        // You can redirect to a 'waiting' page or dashboard here
+    }
+</script>
+
 </body>
 </html>
