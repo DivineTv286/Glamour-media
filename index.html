@@ -9,11 +9,8 @@
     <meta name="theme-color" content="#dbb445">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
@@ -55,33 +52,21 @@
         .nav-link { color: #fff !important; font-weight: 600; font-size: 0.9rem; margin: 0 15px; transition: 0.3s; }
         .nav-link:hover { color: var(--gold) !important; }
 
-    /* Update your button styles to include text-decoration: none */
+        .btn-custom {
+            text-decoration: none !important; 
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: 800;
+            transition: 0.3s;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            border: none;
+        }
 
-.btn-custom {
-    text-decoration: none !important; /* This removes the underline */
-    padding: 12px 35px;
-    border-radius: 50px;
-    font-weight: 800;
-    transition: 0.3s;
-    display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.85rem;
-}
-
-.btn-gold {
-    background: var(--gold);
-    color: #000;
-    border: none;
-    text-decoration: none; /* Extra safety */
-}
-
-.btn-outline {
-    border: 1px solid var(--glass-border);
-    color: #fff;
-    background: var(--glass);
-    text-decoration: none; /* Extra safety */
-}
+        .btn-gold { background: var(--gold); color: #000; }
+        .btn-outline { border: 1px solid var(--glass-border); color: #fff; background: var(--glass); }
 
         /* --- HERO --- */
         #hero-section {
@@ -137,6 +122,18 @@
         .benefit-list li { margin-bottom: 12px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
         .benefit-list li i { color: var(--gold); }
 
+        .country-btn {
+            padding: 8px 20px !important;
+            font-size: 0.75rem !important;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .country-btn.active {
+            background: var(--gold) !important;
+            color: #000 !important;
+            border-color: var(--gold) !important;
+        }
+
         /* --- POPUP & WIDGET --- */
         #popup-container {
             position: fixed; bottom: 20px; left: 20px; background: white; padding: 15px 20px;
@@ -158,54 +155,19 @@
             display: none; overflow: hidden;
         }
 
+        /* --- FAQ --- */
+        .accordion-item { background: var(--glass) !important; border: 1px solid var(--glass-border) !important; border-radius: 15px !important; margin-bottom: 15px; overflow: hidden; }
+        .accordion-button { background: transparent !important; color: #fff !important; font-weight: 600; padding: 20px; box-shadow: none !important; border: none; }
+        .accordion-button:not(.collapsed) { color: var(--gold) !important; border-bottom: 1px solid var(--glass-border); }
+        .accordion-button::after { filter: brightness(0) invert(1); }
+        .accordion-body { color: var(--text-gray); line-height: 1.6; background: rgba(0,0,0,0.2); }
+        .faq-subtitle { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 10px; }
+
         @media (max-width: 991px) {
             .hero-title { text-align: center; }
             .hero-subtitle { text-align: center; margin: 0 auto 30px; }
             .hero-btns { justify-content: center; display: flex; gap: 10px; }
         }
-        /* --- FAQ CUSTOM STYLING --- */
-.accordion-item {
-    background: var(--glass) !important;
-    border: 1px solid var(--glass-border) !important;
-    border-radius: 15px !important;
-    margin-bottom: 15px;
-    overflow: hidden;
-}
-
-.accordion-button {
-    background: transparent !important;
-    color: #fff !important;
-    font-weight: 600;
-    padding: 20px;
-    box-shadow: none !important;
-    border: none;
-}
-
-.accordion-button:not(.collapsed) {
-    color: var(--gold) !important;
-    border-bottom: 1px solid var(--glass-border);
-}
-
-.accordion-button::after {
-    filter: brightness(0) invert(1); /* Makes the arrow white */
-}
-
-.accordion-body {
-    color: var(--text-gray);
-    line-height: 1.6;
-    background: rgba(0,0,0,0.2);
-}
-
-.faq-subtitle {
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    display: block;
-    margin-bottom: 10px;
-}
-
     </style>
 </head>
 <body>
@@ -308,17 +270,24 @@
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="section-title glow-text">Choose Your Path</h2>
+                <div class="d-flex justify-content-center flex-wrap gap-2 mt-4">
+                    <button class="btn-custom btn-outline country-btn active" onclick="updatePrice('NG', this)">🇳🇬 Nigeria</button>
+                    <button class="btn-custom btn-outline country-btn" onclick="updatePrice('GH', this)">🇬🇭 Ghana</button>
+                    <button class="btn-custom btn-outline country-btn" onclick="updatePrice('CM', this)">🇨🇲 Cameroon</button>
+                </div>
             </div>
             <div class="row justify-content-center g-4">
                 <div class="col-lg-5" data-aos="flip-left">
                     <div class="package-card premium">
                         <span class="badge bg-warning text-dark mb-3">RECOMMENDED</span>
                         <h3 class="fw-bold">PREMIUM ACCESS</h3>
-                        <div class="price"><span>₦</span>14,000</div>
+                        <div class="price"><span id="currency-symbol">₦</span><span id="main-price">14,000</span></div>
+                        <p id="sub-price" class="text-secondary small" style="margin-top: -15px;">(Approx £7)</p>
                         <ul class="benefit-list">
                             <li><i class="fa-solid fa-check"></i> Full access to SkillUp Programs</li>
-                            <li><i class="fa-solid fa-check"></i> Eligible for Active Rewards</li>
+                            <li><i class="fa-solid fa-check"></i> <span id="reward-text">Eligible for ₦10,000 Reward</span></li>
                             <li><i class="fa-solid fa-check"></i> Global Remote Gigs Access</li>
+                            <li><i class="fa-solid fa-check"></i> <span id="gain-text">Total GlamGains: ₦24,000/Hr</span></li>
                             <li><i class="fa-solid fa-check"></i> 24/7 Priority Support</li>
                         </ul>
                         <a href="signup.html" class="btn-custom btn-gold w-100">Get Started</a>
@@ -327,7 +296,8 @@
             </div>
         </div>
     </section>
-        <section id="faq-section" class="section-padding" style="background: var(--section-bg-3);">
+
+       <section id="faq-section" class="section-padding" style="background: var(--section-bg-3);">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -395,7 +365,6 @@
         </div>
     </section>
 
-
     <footer class="section-padding" style="background: #000; border-top: 1px solid var(--glass-border);">
         <div class="container text-center">
             <a class="logo-area justify-content-center mb-4" href="#"><span>❀</span> GLAMOUR</a>
@@ -410,12 +379,12 @@
         <div class="popup-content">
             <div class="popup-header">
                 <span id="user-flag">🇳🇬</span> 
-                <strong id="user-name">Rapheal</strong> from 
+                <strong id="user-name">Victor Ike</strong> from 
                 <span id="user-location">Port Harcourt</span>
             </div>
             <div class="popup-body">
                 <span id="user-action">just activated</span><br>
-                <strong id="activity-detail">GLAMOUR PREMIUM — ₦14,000</strong>
+                <strong id="activity-detail">GLAMOUR PREMIUM</strong>
             </div>
             <div class="popup-footer">
                 • <span id="time-ago">Just now</span>
@@ -434,7 +403,7 @@
             </div>
             <div class="p-3">
                 <p class="small text-secondary">Hello! Ready to join the elite circle of creators?</p>
-                <a href="https://t.me/DivineTvofficial" target="_blank" class="btn btn-warning w-100 fw-bold py-2">CHAT DEVELOPER</a>
+                <a href="https://t.me/DivineTvofficial" target="_blank" class="btn btn-warning w-100 fw-bold py-2">CHAT SUPPORT</a>
             </div>
         </div>
     </div>
@@ -457,11 +426,30 @@
             $('#chatBox').fadeToggle(300);
         }
 
+        // PRICE SWITCHER LOGIC
+        function updatePrice(country, btn) {
+            $('.country-btn').removeClass('active');
+            $(btn).addClass('active');
+
+            const priceData = {
+                'NG': { symbol: '₦', amount: '14,000', pounds: '£7', reward: '₦10,000', gains: '₦24,000/Hr' },
+                'GH': { symbol: 'GH₵', amount: '250', pounds: '£7', reward: '175 GHS', gains: '420 GHS/Hr' },
+                'CM': { symbol: 'XAF', amount: '14,000', pounds: '£7', reward: '10,000 XAF', gains: '24,000 XAF/Hr' }
+            };
+
+            const data = priceData[country];
+            $('#currency-symbol').text(data.symbol);
+            $('#main-price').text(data.amount);
+            $('#sub-price').text(`(Approx ${data.pounds})`);
+            $('#reward-text').text(`Eligible for ${data.reward} Reward`);
+            $('#gain-text').text(`Total GlamGains: ${data.gains}`);
+        }
+
         const users = [
             { name: "Emmanuel", city: "Port Harcourt", flag: "🇳🇬" },
             { name: "Blessing", city: "Lagos", flag: "🇳🇬" },
-            { name: "Chisom", city: "Abuja", flag: "🇳🇬" },
-            { name: "Kofi", city: "Accra", flag: "🇬🇭" }
+            { name: "Kofi", city: "Accra", flag: "🇬🇭" },
+            { name: "Jean", city: "Douala", flag: "🇨🇲" }
         ];
 
         function showPopup() {
@@ -481,4 +469,4 @@
         setTimeout(showPopup, 3000);
     </script>
 </body>
-  </html>
+</html>
