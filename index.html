@@ -294,61 +294,87 @@
         <div class="row g-4">
             <div class="col-md-4" data-aos="fade-up">
                 <div class="feature-box p-0 overflow-hidden">
-                    <img src="hero1.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Lifestyle">
+                    <img src="IMG-20260423-WA0065.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Lifestyle">
                     <div class="p-4">
                         <i class="fa-solid fa-shirt feature-icon"></i>
                         <h4>GLAM LIFESTYLE</h4>
-                        <p class="text-secondary">Monetize your daily routines. Turn your outfits, routines, and personal vibe into premium content for a global audience.</p>
+                        <p class="text-secondary">Your daily outfits, routines, and personal vibe become premium content for a global audience. Turn your life into Euros and Pounds effortlessly.</p>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="feature-box p-0 overflow-hidden">
-                    <img src="hero6.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Status">
+                    <img src="IMG-20260423-WA0074.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Status">
                     <div class="p-4">
                         <i class="fa-brands fa-whatsapp feature-icon"></i>
                         <h4>GLAM STATUS</h4>
-                        <p class="text-secondary">Just like a WhatsApp Status... but it pays. Upload, share your link, and earn from every single view you generate.</p>
+                        <p class="text-secondary">Just like WhatsApp Status... but it pays. Upload, share your link, and earn from every single view. Go viral and get rewarded.</p>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="feature-box p-0 overflow-hidden">
-                    <img src="hero5.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Script2Cash">
+                    <img src="IMG-20260423-WA0073.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Script2Cash">
                     <div class="p-4">
                         <i class="fa-solid fa-money-bill-transfer feature-icon"></i>
                         <h4>SCRIPT2CASH</h4>
-                        <p class="text-secondary">Turn content into cash. Execute daily scripts, post, and share. This is content creation—upgraded for earners.</p>
+                        <p class="text-secondary">Turn content into cash with daily scripts and simple execution. Post, share, and earn. This is content creation — upgraded.</p>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-4" data-aos="fade-up">
                 <div class="feature-box p-0 overflow-hidden">
-                    <img src="cusine.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Cuisine">
+                    <img src="IMG-20260423-WA0070.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Cuisine">
                     <div class="p-4">
                         <i class="fa-solid fa-utensils feature-icon"></i>
                         <h4>GLAM CUISINE</h4>
-                        <p class="text-secondary">Your food is global content. Every meal becomes an opportunity to earn in foreign currency. Cook it, share it, get paid.</p>
+                        <p class="text-secondary">Every meal becomes an opportunity to earn in foreign currency. From jollof rice to local delicacies—cook it, share it, and get paid.</p>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-8" data-aos="fade-up" data-aos-delay="100">
                 <div class="feature-box p-0 overflow-hidden d-md-flex align-items-center">
-                    <img src="loan.jpg" class="img-fluid" style="width: 100%; max-width: 350px; height: 100%; object-fit: cover; opacity: 0.8;" alt="Loan">
+                    <img src="IMG-20260423-WA0084.jpg" class="img-fluid" style="width: 100%; max-width: 350px; height: 100%; object-fit: cover; opacity: 0.8;" alt="Loan">
                     <div class="p-4">
                         <i class="fa-solid fa-hand-holding-dollar feature-icon"></i>
                         <h4>GLAM LOAN</h4>
-                        <p class="text-secondary">Access up to ₦10,000,000 (95,000 GHS / 4,100,000 XAF) instantly for business or personal needs. No long processes; quick approval repaid with your earnings.</p>
+                        <p class="text-secondary">
+                            Easily access up to <strong>₦10,000,000 (4,100,000 XAF / 95,000 GHS)</strong> instantly on Glamour. 
+                            Whether for business or personal needs, get the financial boost you need with no long processes and quick approval. 
+                            Repay easily with your Glamour earnings.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+// Update this section in your <script> tag to include accurate data from the membership flyers
+function updatePrice(country, btn) {
+    $('.country-btn').removeClass('active');
+    $(btn).addClass('active');
+
+    const priceData = {
+        'NG': { symbol: '₦', amount: '14,000', pounds: '£7', reward: '₦10,000', gains: '₦24,000/Hr' },
+        'GH': { symbol: 'GH₵', amount: '250', pounds: '£7', reward: '175 GHS', gains: '420 GHS/Hr' }, // Data from
+        'CM': { symbol: 'XAF', amount: '14,000', pounds: '£7', reward: '10,000 XAF', gains: '24,000 XAF/Hr' } // Data from
+    };
+
+    const data = priceData[country];
+    $('#currency-symbol').text(data.symbol);
+    $('#main-price').text(data.amount);
+    $('#sub-price').text(`(Approx ${data.pounds})`);
+    $('#reward-text').text(`Eligible for ${data.reward} Reward`);
+    $('#gain-text').text(`Total GlamGains: ${data.gains}`);
+}
+</script>
+
         <section id="pricing-section" class="section-padding">
         <div class="container">
             <div class="row align-items-center g-5">
