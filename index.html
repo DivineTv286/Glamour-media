@@ -202,6 +202,51 @@
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+/* Ensure the text and image share space correctly */
+.feature-box.d-md-flex {
+    align-items: stretch; /* Forces image and text to be same height */
+}
+
+@media (min-width: 768px) {
+    .loan-img-container {
+        width: 35% !important; /* Forces the image to take 35% of the card */
+        height: auto;
+    }
+    .loan-text-container {
+        width: 65% !important; /* Gives the text 65% of the card */
+    }
+}
+
+@media (max-width: 767px) {
+    .loan-img-container {
+        width: 100% !important;
+        height: 200px !important; /* Standard height on mobile */
+    }
+}
+/* High-Visibility Price Badge */
+.badge-price {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #ffffff; /* White background for maximum contrast */
+    color: #000000;      /* Black text */
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 5;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Ensure the loan container handles the absolute badge correctly */
+.flex-shrink-0.position-relative {
+    position: relative;
+}
+
+
     </style>
 </head>
 <body>
@@ -292,127 +337,132 @@
             <h2 class="section-title">The Ecosystem</h2>
         </div>
         <div class="row g-4">
-            <div class="col-md-4" data-aos="fade-up">
-                <div class="feature-box p-0 overflow-hidden">
-                    <img src="hero1.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Lifestyle">
-                    <div class="p-4">
-                        <i class="fa-solid fa-shirt feature-icon"></i>
-                        <h4>GLAM LIFESTYLE</h4>
-                        <p class="text-secondary">Your daily outfits, routines, and personal vibe become premium content for a global audience. Turn your life into Euros and Pounds effortlessly.</p>
-                    </div>
-                </div>
+    <div class="col-md-4" data-aos="fade-up">
+        <div class="feature-box p-0 overflow-hidden">
+            <div class="position-relative">
+                <img src="hero1.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Lifestyle">
+                <span class="badge-price">Earn £2/Hr</span>
             </div>
-
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="feature-box p-0 overflow-hidden">
-                    <img src="hero6.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Status">
-                    <div class="p-4">
-                        <i class="fa-brands fa-whatsapp feature-icon"></i>
-                        <h4>GLAM STATUS</h4>
-                        <p class="text-secondary">Just like WhatsApp Status... but it pays. Upload, share your link, and earn from every single view. Go viral and get rewarded.</p>
-                    </div>
-                </div>
+            <div class="p-4">
+                <i class="fa-solid fa-shirt feature-icon"></i>
+                <h4>GLAM LIFESTYLE</h4>
+                <p class="text-secondary">Turn your routines into digital assets. Your daily outfits and personal vibe become premium content. Europe is watching.</p>
             </div>
+        </div>
+    </div>
 
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="feature-box p-0 overflow-hidden">
-                    <img src="hero5.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Script2Cash">
-                    <div class="p-4">
-                        <i class="fa-solid fa-money-bill-transfer feature-icon"></i>
-                        <h4>SCRIPT2CASH</h4>
-                        <p class="text-secondary">Turn content into cash with daily scripts and simple execution. Post, share, and earn. This is content creation — upgraded.</p>
-                    </div>
-                </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="feature-box p-0 overflow-hidden">
+            <div class="position-relative">
+                <img src="hero6.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Status">
+                <span class="badge-price">Earn +€3.00</span>
             </div>
-
-            <div class="col-md-6 col-lg-4" data-aos="fade-up">
-                <div class="feature-box p-0 overflow-hidden">
-                    <img src="cusine.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Cuisine">
-                    <div class="p-4">
-                        <i class="fa-solid fa-utensils feature-icon"></i>
-                        <h4>GLAM CUISINE</h4>
-                        <p class="text-secondary">Every meal becomes an opportunity to earn in foreign currency. From jollof rice to local delicacies—cook it, share it, and get paid.</p>
-                    </div>
-                </div>
+            <div class="p-4">
+                <i class="fa-brands fa-whatsapp feature-icon"></i>
+                <h4>GLAM STATUS</h4>
+                <p class="text-secondary">Just like WhatsApp Status... but it pays. Upload, share your link, and earn from every single view.</p>
             </div>
+        </div>
+    </div>
 
-            <div class="col-md-6 col-lg-8" data-aos="fade-up" data-aos-delay="100">
-                <div class="feature-box p-0 overflow-hidden d-md-flex align-items-center">
-                    <img src="loan.jpg" class="img-fluid" style="width: 100%; max-width: 350px; height: 100%; object-fit: cover; opacity: 0.8;" alt="Loan">
-                    <div class="p-4">
-                        <i class="fa-solid fa-hand-holding-dollar feature-icon"></i>
-                        <h4>GLAM LOAN</h4>
-                        <p class="text-secondary">
-                            Easily access up to <strong>₦10,000,000 (4,100,000 XAF / 95,000 GHS)</strong> instantly on Glamour. 
-                            Whether for business or personal needs, get the financial boost you need with no long processes and quick approval. 
-                            Repay easily with your Glamour earnings.
-                        </p>
-                    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="feature-box p-0 overflow-hidden">
+            <div class="position-relative">
+                <img src="hero5.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Script2Cash">
+                <span class="badge-price">£2 Per Script</span>
+            </div>
+            <div class="p-4">
+                <i class="fa-solid fa-money-bill-transfer feature-icon"></i>
+                <h4>SCRIPT2CASH</h4>
+                <p class="text-secondary">You already create content. Now get paid for it with daily scripts and simple execution.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4" data-aos="fade-up">
+        <div class="feature-box p-0 overflow-hidden">
+            <div class="position-relative">
+                <img src="cusine.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Cuisine">
+                <span class="badge-price">Global Royalties</span>
+            </div>
+            <div class="p-4">
+                <i class="fa-solid fa-utensils feature-icon"></i>
+                <h4>GLAM CUISINE</h4>
+                <p class="text-secondary">From jollof rice to local delicacies, every meal becomes an opportunity to earn in foreign currency.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-8" data-aos="fade-up" data-aos-delay="100">
+        <div class="feature-box p-0 overflow-hidden d-md-flex align-items-stretch">
+            <div class="flex-shrink-0 position-relative" style="width: 100%; max-width: 300px; background: #000;">
+                <img src="loan.jpg" class="h-100 w-100" style="object-fit: cover; opacity: 0.8;" alt="Loan">
+                <span class="badge-price">Up to ₦10M</span>
+            </div>
+            <div class="p-4 d-flex flex-column justify-content-center">
+                <i class="fa-solid fa-hand-holding-dollar feature-icon"></i>
+                <h4>GLAM LOAN</h4>
+                <p class="text-secondary">
+                    Easily access up to <strong>₦10,000,000 (4.1M XAF / 95K GHS)</strong> instantly with quick approval and no long process.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<script>
-// Update this section in your <script> tag to include accurate data from the membership flyers
-function updatePrice(country, btn) {
-    $('.country-btn').removeClass('active');
-    $(btn).addClass('active');
-
-    const priceData = {
-        'NG': { symbol: '₦', amount: '14,000', pounds: '£7', reward: '₦10,000', gains: '₦24,000/Hr' },
-        'GH': { symbol: 'GH₵', amount: '250', pounds: '£7', reward: '175 GHS', gains: '420 GHS/Hr' }, // Data from
-        'CM': { symbol: 'XAF', amount: '14,000', pounds: '£7', reward: '10,000 XAF', gains: '24,000 XAF/Hr' } // Data from
-    };
-
-    const data = priceData[country];
-    $('#currency-symbol').text(data.symbol);
-    $('#main-price').text(data.amount);
-    $('#sub-price').text(`(Approx ${data.pounds})`);
-    $('#reward-text').text(`Eligible for ${data.reward} Reward`);
-    $('#gain-text').text(`Total GlamGains: ${data.gains}`);
-}
-</script>
-
         <section id="pricing-section" class="section-padding">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <div class="hero-img-box">
-                        <img src="worldwide.jpg" class="img-fluid" alt="Membership Benefits" style="filter: brightness(0.8);">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="hero-img-box mb-4">
+                    <img src="worldwide.jpg" class="img-fluid" alt="Membership Benefits" style="filter: brightness(0.8);">
+                </div>
+                <div class="pe-lg-4">
+                    <h4 class="fw-bold text-white mb-3">Expanding Across Borders</h4>
+                    <p class="text-secondary" style="line-height: 1.7;">
+                        Glamour is more than just a platform; it's a bridge connecting African creativity to European markets. 
+                        By launching in <strong>Nigeria, Ghana, and Cameroon</strong>, we are creating a unified ecosystem 
+                        where localized talent earns in global currencies. 
+                    </p>
+                    <p class="text-secondary small">
+                        <i class="fa-solid fa-earth-africa me-2" style="color: var(--gold);"></i> 
+                        Select your country to see how the Glamour Premium experience is tailored for your region.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="text-start mb-4">
+                    <h2 class="section-title glow-text mb-2">Choose Your Path</h2>
+                    <p class="text-secondary">Select your region to view localized rates and gains.</p>
+                    <div class="d-flex flex-wrap gap-2 mt-3">
+                        <button class="btn-custom btn-outline country-btn active" onclick="updatePrice('NG', this)">🇳🇬 Nigeria</button>
+                        <button class="btn-custom btn-outline country-btn" onclick="updatePrice('GH', this)">🇬🇭 Ghana</button>
+                        <button class="btn-custom btn-outline country-btn" onclick="updatePrice('CM', this)">🇨🇲 Cameroon</button>
                     </div>
                 </div>
-                <div class="col-lg-6" data-aos="fade-left">
-                    <div class="text-start mb-4">
-                        <h2 class="section-title glow-text mb-2">Choose Your Path</h2>
-                        <p class="text-secondary">Select your region to view localized rates and gains.</p>
-                        <div class="d-flex flex-wrap gap-2 mt-3">
-                            <button class="btn-custom btn-outline country-btn active" onclick="updatePrice('NG', this)">🇳🇬 Nigeria</button>
-                            <button class="btn-custom btn-outline country-btn" onclick="updatePrice('GH', this)">🇬🇭 Ghana</button>
-                            <button class="btn-custom btn-outline country-btn" onclick="updatePrice('CM', this)">🇨🇲 Cameroon</button>
-                        </div>
-                    </div>
 
-                    <div class="package-card premium text-start">
-                        <span class="badge bg-warning text-dark mb-3">RECOMMENDED</span>
-                        <h3 class="fw-bold">PREMIUM ACCESS</h3>
-                        <div class="price mb-2"><span id="currency-symbol">₦</span><span id="main-price">14,000</span></div>
-                        <p id="sub-price" class="text-secondary small mb-4">(Approx £7)</p>
-                        <ul class="benefit-list">
-                            <li><i class="fa-solid fa-check"></i> Full access to SkillUp Programs</li>
-                            <li><i class="fa-solid fa-check"></i> <span id="reward-text">Eligible for ₦10,000 Reward</span></li>
-                            <li><i class="fa-solid fa-check"></i> Global Remote Gigs Access</li>
-                            <li><i class="fa-solid fa-check"></i> <span id="gain-text">Total GlamGains: ₦24,000/Hr</span></li>
-                        </ul>
-                        <a href="signup.html" class="btn-custom btn-gold w-100 text-center">Get Started</a>
-                    </div>
+                <div class="package-card premium text-start">
+                    <span class="badge bg-warning text-dark mb-3">RECOMMENDED</span>
+                    <h3 class="fw-bold">PREMIUM ACCESS</h3>
+                    <div class="price mb-2"><span id="currency-symbol">₦</span><span id="main-price">14,000</span></div>
+                    <p id="sub-price" class="text-secondary small mb-4">(Approx £7)</p>
+                    <ul class="benefit-list">
+                        <li><i class="fa-solid fa-check"></i> Full access to SkillUp Programs</li>
+                        <li><i class="fa-solid fa-check"></i> <span id="reward-text">Eligible for ₦10,000 Reward</span></li>
+                        <li><i class="fa-solid fa-check"></i> Global Remote Gigs Access</li>
+                        <li><i class="fa-solid fa-check"></i> <span id="gain-text">Total GlamGains: ₦24,000/Hr</span></li>
+                    </ul>
+                    <a href="signup.html" class="btn-custom btn-gold w-100 text-center">Get Started</a>
                 </div>
             </div>
         </div>
-    </section>
-
-
+    </div>
+</section>
     <section id="faq-section" class="section-padding" style="background: var(--section-bg-3);">
         <div class="container">
             <div class="row justify-content-center">
