@@ -317,36 +317,43 @@
         </div>
     </section>
 
-    <section id="pricing-section" class="section-padding">
+        <section id="pricing-section" class="section-padding">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="section-title glow-text">Choose Your Path</h2>
-                <div class="d-flex justify-content-center flex-wrap gap-2 mt-4">
-                    <button class="btn-custom btn-outline country-btn active" onclick="updatePrice('NG', this)">🇳🇬 Nigeria</button>
-                    <button class="btn-custom btn-outline country-btn" onclick="updatePrice('GH', this)">🇬🇭 Ghana</button>
-                    <button class="btn-custom btn-outline country-btn" onclick="updatePrice('CM', this)">🇨🇲 Cameroon</button>
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="hero-img-box">
+                        <img src="worldwide.jpg" class="img-fluid" alt="Membership Benefits" style="filter: brightness(0.8);">
+                    </div>
                 </div>
-            </div>
-            <div class="row justify-content-center g-4">
-                <div class="col-lg-5" data-aos="flip-left">
-                    <div class="package-card premium">
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="text-start mb-4">
+                        <h2 class="section-title glow-text mb-2">Choose Your Path</h2>
+                        <p class="text-secondary">Select your region to view localized rates and gains.</p>
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <button class="btn-custom btn-outline country-btn active" onclick="updatePrice('NG', this)">🇳🇬 Nigeria</button>
+                            <button class="btn-custom btn-outline country-btn" onclick="updatePrice('GH', this)">🇬🇭 Ghana</button>
+                            <button class="btn-custom btn-outline country-btn" onclick="updatePrice('CM', this)">🇨🇲 Cameroon</button>
+                        </div>
+                    </div>
+
+                    <div class="package-card premium text-start">
                         <span class="badge bg-warning text-dark mb-3">RECOMMENDED</span>
                         <h3 class="fw-bold">PREMIUM ACCESS</h3>
-                        <div class="price"><span id="currency-symbol">₦</span><span id="main-price">14,000</span></div>
-                        <p id="sub-price" class="text-secondary small" style="margin-top: -15px;">(Approx £7)</p>
+                        <div class="price mb-2"><span id="currency-symbol">₦</span><span id="main-price">14,000</span></div>
+                        <p id="sub-price" class="text-secondary small mb-4">(Approx £7)</p>
                         <ul class="benefit-list">
                             <li><i class="fa-solid fa-check"></i> Full access to SkillUp Programs</li>
                             <li><i class="fa-solid fa-check"></i> <span id="reward-text">Eligible for ₦10,000 Reward</span></li>
                             <li><i class="fa-solid fa-check"></i> Global Remote Gigs Access</li>
                             <li><i class="fa-solid fa-check"></i> <span id="gain-text">Total GlamGains: ₦24,000/Hr</span></li>
-                            <li><i class="fa-solid fa-check"></i> 24/7 Priority Support</li>
                         </ul>
-                        <a href="signup.html" class="btn-custom btn-gold w-100">Get Started</a>
+                        <a href="signup.html" class="btn-custom btn-gold w-100 text-center">Get Started</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <section id="faq-section" class="section-padding" style="background: var(--section-bg-3);">
         <div class="container">
