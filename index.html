@@ -259,6 +259,44 @@
 /* Fix icon margin when using flex */
 .feature-icon.mb-0 {
     margin-bottom: 0 !important;
+}/* 1. Continuous Pulse Animation */
+@keyframes pulse-gold {
+    0% { box-shadow: 0 0 0 0 rgba(219, 180, 69, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(219, 180, 69, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(219, 180, 69, 0); }
+}
+
+.animate-pulse {
+    animation: pulse-gold 2s infinite;
+}
+
+/* 2. Shimmer/Shine Effect on Hover */
+.btn-gold {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-gold::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(30deg);
+    transition: none;
+}
+
+.btn-gold:hover::after {
+    left: 120%;
+    transition: all 0.6s f-out;
+}
+
+/* 3. Small scale up on hover */
+.btn-custom:hover {
+    transform: scale(1.05) translateY(-2px);
+    filter: brightness(1.1);
 }
     </style>
 </head>
@@ -289,7 +327,7 @@
                     <h1 class="hero-title">Elevate Your <span>Lifestyle</span> to Assets</h1>
                     <p class="hero-subtitle">Turn your creativity, habits, and daily routines into global digital content with Europe’s leading creative partner.</p>
                     <div class="hero-btns">
-                        <a href="signup.html" class="btn-custom btn-gold">Get Started</a>
+                        <a href="signup.html" class="btn-custom btn-gold animate-pulse">Get Started</a>
                         <a href="#about-section" class="btn-custom btn-outline">Learn More</a>
                     </div>
                 </div>
@@ -482,7 +520,7 @@
                         <li><i class="fa-solid fa-check"></i> Global Remote Gigs Access</li>
                         <li><i class="fa-solid fa-check"></i> <span id="gain-text">Total GlamGains: ₦24,000/Hr</span></li>
                     </ul>
-                    <a href="signup.html" class="btn-custom btn-gold w-100 text-center">Get Started</a>
+                    <a href="signup.html" class="btn-custom btn-gold w-100 text-center animate-pulse">Get Started</a>
                 </div>
             </div>
         </div>
