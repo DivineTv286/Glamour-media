@@ -245,8 +245,21 @@
 .flex-shrink-0.position-relative {
     position: relative;
 }
+/* Amount next to Icon */
+.badge-amount {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--gold);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: 1px solid var(--gold-glow);
+}
 
-
+/* Fix icon margin when using flex */
+.feature-icon.mb-0 {
+    margin-bottom: 0 !important;
+}
     </style>
 </head>
 <body>
@@ -341,11 +354,15 @@
         <div class="feature-box p-0 overflow-hidden">
             <div class="position-relative">
                 <img src="hero1.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Lifestyle">
+                <span class="badge-price">Earn £2/Hr</span>
             </div>
             <div class="p-4">
-                <i class="fa-solid fa-shirt feature-icon"></i>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <i class="fa-solid fa-shirt feature-icon mb-0"></i>
+                    <span class="badge-amount">£2/Hr</span>
+                </div>
                 <h4>GLAM LIFESTYLE</h4>
-                <p class="text-secondary">Turn your routines into digital assets. Earn up to <strong>£2 every hour</strong> by showcasing your outfits and personal vibe to a global audience. Europe is watching.</p>
+                <p class="text-secondary">Turn your routines into digital assets. Monetize your aesthetic and lifestyle content for a global audience.</p>
             </div>
         </div>
     </div>
@@ -354,27 +371,32 @@
         <div class="feature-box p-0 overflow-hidden">
             <div class="position-relative">
                 <img src="hero6.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Status">
-        
+                <span class="badge-price">Earn +€3.00</span>
             </div>
             <div class="p-4">
-                <i class="fa-brands fa-whatsapp feature-icon"></i>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <i class="fa-brands fa-whatsapp feature-icon mb-0"></i>
+                    <span class="badge-amount">+€3.00</span>
+                </div>
                 <h4>GLAM STATUS</h4>
-                <p class="text-secondary">Just like WhatsApp Status... but it pays. Upload and earn a <strong>bonus of +€3.00</strong>. Share your link and get rewarded for every single view you generate.</p>
+                <p class="text-secondary">Share your unique link on your status. Get paid for every view. The more eyes on your link, the more you earn.</p>
             </div>
         </div>
     </div>
-    
 
     <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
         <div class="feature-box p-0 overflow-hidden">
             <div class="position-relative">
                 <img src="hero5.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Script2Cash">
-                
+                <span class="badge-price">£2 Per Script</span>
             </div>
             <div class="p-4">
-                <i class="fa-solid fa-money-bill-transfer feature-icon"></i>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <i class="fa-solid fa-money-bill-transfer feature-icon mb-0"></i>
+                    <span class="badge-amount">£2/Script</span>
+                </div>
                 <h4>SCRIPT2CASH</h4>
-                <p class="text-secondary">You already create content. Now get paid <strong>£2 for every script</strong> you execute. Simple tasks, high-conversion, and instant rewards.</p>
+                <p class="text-secondary">Execute professional creative scripts daily. High-conversion tasks that turn your effort into direct cash.</p>
             </div>
         </div>
     </div>
@@ -383,12 +405,15 @@
         <div class="feature-box p-0 overflow-hidden">
             <div class="position-relative">
                 <img src="cusine.jpg" class="img-fluid w-100" style="height: 200px; object-fit: cover; opacity: 0.7;" alt="Cuisine">
-               
+                <span class="badge-price">Royalties</span>
             </div>
             <div class="p-4">
-                <i class="fa-solid fa-utensils feature-icon"></i>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <i class="fa-solid fa-utensils feature-icon mb-0"></i>
+                    <span class="badge-amount">Global</span>
+                </div>
                 <h4>GLAM CUISINE</h4>
-                <p class="text-secondary">From jollof rice to delicacies, every meal is an opportunity to <strong>earn in foreign currency</strong>. Showcase African taste to the world and get paid.</p>
+                <p class="text-secondary">Your food is content. Earn foreign currency by showcasing local African delicacies to a worldwide market.</p>
             </div>
         </div>
     </div>
@@ -400,10 +425,13 @@
                 <span class="badge-price">Up to ₦10M</span>
             </div>
             <div class="p-4 d-flex flex-column justify-content-center">
-                <i class="fa-solid fa-hand-holding-dollar feature-icon"></i>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <i class="fa-solid fa-hand-holding-dollar feature-icon mb-0" style="font-size: 1.5rem;"></i>
+                    <span class="badge-amount">₦10,000,000</span>
+                </div>
                 <h4>GLAM LOAN</h4>
                 <p class="text-secondary">
-                    Easily access up to <strong>₦10,000,000 (4.1M XAF / 95K GHS)</strong> instantly with quick approval. Use your GlamGains to repay easily without stress.
+                    Easily access up to <strong>₦10,000,000 (4.1M XAF / 95K GHS)</strong> instantly with quick approval and no long process.
                 </p>
             </div>
         </div>
