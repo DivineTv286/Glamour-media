@@ -10,6 +10,9 @@
         :root { --gold: #dbb445; --dark: #000; --card: #0d0d0d; --glass: rgba(255, 255, 255, 0.03); }
         body { font-family: 'Inter', sans-serif; background: var(--dark); color: #fff; margin: 0; padding: 15px; }
         
+        /* Modal Lock */
+        body.modal-open { overflow: hidden; height: 100vh; }
+
         .container { max-width: 450px; margin: 0 auto; padding-top: 20px; }
 
         .timer-box { 
@@ -58,7 +61,6 @@
         .copy-icon { color: var(--gold); cursor: pointer; font-size: 14px; transition: 0.2s; }
         .copy-icon:active { transform: scale(0.8); }
 
-    
         .narration-box {
             background: rgba(219, 180, 69, 0.07);
             padding: 15px;
@@ -81,72 +83,61 @@
             cursor: pointer;
             box-shadow: 0 10px 30px rgba(219, 180, 69, 0.15);
         }
-        /* --- OPay Warning Modal --- */
-#opay-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(8px);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.opay-modal {
-    background: #0d0d0d;
-    border: 2px solid #ff4444;
-    border-radius: 24px;
-    padding: 30px;
-    text-align: center;
-    max-width: 400px;
-    box-shadow: 0 0 30px rgba(255, 68, 68, 0.2);
-}
-
-.opay-modal i { color: #ff4444; font-size: 50px; margin-bottom: 20px; }
-
-.opay-modal h2 { 
-    font-size: 18px; 
-    font-weight: 900; 
-    color: #ff4444; 
-    margin-bottom: 15px; 
-    text-transform: uppercase;
-}
-
-.opay-modal p { 
-    font-size: 14px; 
-    color: #ccc; 
-    line-height: 1.6; 
-    margin-bottom: 25px; 
-}
-
-.opay-modal .btn-ack {
-    background: #ff4444;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 12px;
-    font-weight: 800;
-    width: 100%;
-    cursor: pointer;
-    text-transform: uppercase;
-}
-
 
         .help-text { font-size: 11px; color: #555; text-align: center; margin-top: 20px; line-height: 1.5; }
+
+        /* --- OPAY WARNING MODAL STYLES --- */
+        #opay-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .opay-modal {
+            background: #0d0d0d;
+            border: 2px solid #ff4444;
+            border-radius: 28px;
+            padding: 35px 25px;
+            text-align: center;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 0 40px rgba(255, 68, 68, 0.2);
+        }
+
+        .opay-modal i { color: #ff4444; font-size: 55px; margin-bottom: 20px; }
+        .opay-modal h2 { color: #ff4444; font-weight: 900; text-transform: uppercase; font-size: 18px; margin-bottom: 15px; }
+        .opay-modal p { font-size: 14px; color: #ccc; line-height: 1.6; margin-bottom: 30px; }
+        
+        .btn-ack {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 15px;
+            font-weight: 800;
+            width: 100%;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
     </style>
 </head>
-<body>
-    <div id="opay-overlay">
+<body class="modal-open">
+
+<div id="opay-overlay">
     <div class="opay-modal">
-        <i class="fa-solid fa-circle-exclamation"></i>
+        <i class="fa-solid fa-triangle-exclamation"></i>
         <h2>Payment Warning</h2>
         <p>
             <b>AVOID USING OPAY BANK</b> for this transfer.<br><br>
-            Using OPay may lead to significant delays in verification. Please use <b>PalmPay, Kuda, Moniepoint</b>, or any other commercial bank.
+            OPay transfers lead to major delays. Please use <b>PalmPay, Kuda, Moniepoint</b>, or other commercial banks.
         </p>
-        <button class="btn-ack" onclick="closeOpay()">I UNDERSTAND</button>
+        <button class="btn-ack" onclick="closeOpay()">I Understand</button>
     </div>
 </div>
 
@@ -210,6 +201,15 @@
 </div>
 
 <script>
+// Close OPay Modal Function
+function closeOpay() {
+    const overlay = document.getElementById('opay-overlay');
+    overlay.style.transition = "opacity 0.4s ease";
+    overlay.style.opacity = "0";
+    document.body.classList.remove('modal-open');
+    setTimeout(() => overlay.remove(), 400);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const user = localStorage.getItem('glamour_username') || "Member";
     const country = localStorage.getItem('glamour_country') || "Nigeria";
@@ -286,13 +286,6 @@ Please verify and activate my account.`;
 
     window.location.href = telegramUrl;
 }
-    function closeOpay() {
-    const overlay = document.getElementById('opay-overlay');
-    overlay.style.transition = "0.3s";
-    overlay.style.opacity = "0";
-    setTimeout(() => overlay.remove(), 300);
-}
-
 
 </script>
 
