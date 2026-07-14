@@ -38,9 +38,11 @@
             padding: 25px;
             text-align: center;
             margin-bottom: 25px;
+            position: relative;
         }
         .price-label { font-size: 12px; color: #666; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .price-amt { font-size: 38px; font-weight: 900; color: #fff; margin-top: 10px; }
+        .price-wrapper { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px; }
+        .price-amt { font-size: 38px; font-weight: 900; color: #fff; }
 
         .bank-card {
             background: var(--card);
@@ -55,10 +57,9 @@
         .label { color: #777; font-size: 13px; }
         .val { font-weight: 700; color: #fff; font-size: 14px; display: flex; align-items: center; gap: 8px; }
         
-        .copy-icon { color: var(--gold); cursor: pointer; font-size: 14px; transition: 0.2s; }
+        .copy-icon { color: var(--gold); cursor: pointer; font-size: 14px; transition: 0.2s; padding: 4px; }
         .copy-icon:active { transform: scale(0.8); }
 
-    
         .narration-box {
             background: rgba(219, 180, 69, 0.07);
             padding: 15px;
@@ -80,10 +81,15 @@
             margin-top: 30px;
             cursor: pointer;
             box-shadow: 0 10px 30px rgba(219, 180, 69, 0.15);
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            box-sizing: border-box;
         }
 
         .help-text { font-size: 11px; color: #555; text-align: center; margin-top: 20px; line-height: 1.5; }
-  .modal-overlay {
+        
+        .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(5px);
             display: flex; justify-content: center; align-items: center; z-index: 2000;
@@ -96,7 +102,16 @@
         .modal-title { color: #f85149; font-weight: 800; margin-bottom: 15px; font-size: 20px; }
         .modal-body { font-size: 14px; line-height: 1.6; color: #e6edf3; margin-bottom: 25px; }
         .modal-btn { background: #f85149; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; }
-    </style>
+
+        /* Smooth custom toast notification */
+        #toast {
+            position: fixed; bottom: -50px; left: 50%; transform: translateX(-50%);
+            background: var(--gold); color: #000; padding: 12px 24px;
+            border-radius: 50px; font-weight: 700; font-size: 14px;
+            opacity: 0; transition: 0.3s ease-in-out; z-index: 3000;
+            box-shadow: 0 8px 25px rgba(219, 180, 69, 0.3);
+        }
+        #toast.show { bottom: 40px; opacity: 1; }
     </style>
 </head>
 <body>
@@ -126,7 +141,10 @@
 
     <div class="price-tag">
         <div class="price-label">Exact Amount to Pay</div>
-        <div class="price-amt" id="final-amt">₦0.00</div>
+        <div class="price-wrapper">
+            <div class="price-amt" id="final-amt">₦0.00</div>
+            <i class="fa-regular fa-copy copy-icon" style="font-size: 18px;" onclick="copy('final-amt')"></i>
+        </div>
     </div>
 
     <div class="bank-card">
@@ -134,7 +152,7 @@
         
         <div class="detail-row">
             <span class="label">Bank Name</span>
-            <span class="val">Moniepoint MFB</span>
+            <span class="val" id="bank-name">Moniepoint MFB</span>
         </div>
 
         <div class="detail-row">
@@ -163,15 +181,18 @@
             </div>
         </div>
     </div>
+
     <button class="btn-confirm" onclick="done()">
-    <i class="fa-brands fa-telegram"></i> I HAVE MADE THE TRANSFER
-</button>
+        <i class="fa-brands fa-telegram"></i> I HAVE MADE THE TRANSFER
+    </button>
 
     <p class="help-text">
         Once transfer is made, click the button above. <br>
         Our system will verify the <b>Narration</b> and activate your account.
     </p>
 </div>
+
+<div id="toast">Copied to clipboard!</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -190,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'Ghana': {
             price: '250 GHS',
-            bank: 'MTN ',
+            bank: 'MTN',
             accNo: '0544675418',
             accName: 'DELADEM HOSUNU'
         },
@@ -204,38 +225,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentSetup = bankData[country] || bankData['Nigeria'];
 
     document.getElementById('final-amt').innerText = currentSetup.price;
-    document.querySelector('.detail-row:nth-child(2) .val').innerText = currentSetup.bank; // Updates Bank Name
+    document.getElementById('bank-name').innerText = currentSetup.bank; 
     document.getElementById('acc-no').innerText = currentSetup.accNo;
     document.getElementById('acc-name').innerText = currentSetup.accName;
+    
     startTimer(600, document.getElementById('timer'));
 });
+
 function startTimer(duration, display) {
     let timer = duration, minutes, seconds;
-    setInterval(() => {
+    const interval = setInterval(() => {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
         display.textContent = minutes + ":" + seconds;
-        if (--timer < 0) { timer = 0; }
+        if (--timer < 0) { 
+            clearInterval(interval);
+            display.textContent = "00:00";
+        }
     }, 1000);
 }
 
 function copy(id) {
-    const text = document.getElementById(id).innerText;
-    navigator.clipboard.writeText(text);
-    alert("Copied: " + text);
+    let text = document.getElementById(id).innerText;
+    // Clean currency indicator if copying amount
+    if(id === 'final-amt') {
+        text = text.replace('₦', '').trim();
+    }
+    navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById("toast");
+        toast.innerText = "Copied: " + text;
+        toast.classList.add("show");
+        setTimeout(() => { toast.classList.remove("show"); }, 2000);
+    });
 }
-    function done() {
+
+function done() {
     const user = document.getElementById('user-name').innerText;
     const amount = document.getElementById('final-amt').innerText;
     const narration = document.getElementById('narrator').innerText;
     const country = localStorage.getItem('glamour_country') || "Nigeria";
 
-    
     const telegramHandle = "GLAMOUR_OFFICIAL_P"; 
 
-    
     const message = `Hello Admin, I have just made a payment for my Glamour account activation.
 
 👤 Username: ${user}
@@ -248,11 +281,13 @@ Please verify and activate my account.`;
     const safeMessage = encodeURIComponent(message);
     const telegramUrl = `https://t.me/${telegramHandle}?text=${safeMessage}`;
 
-    window.location.href = telegramUrl;
+    // Redirect explicitly using top-level assignment
+    window.open(telegramUrl, '_blank') || (window.location.href = telegramUrl);
 }
+
 function closeModal() {
-        document.getElementById('warningModal').style.display = 'none';
-    }
+    document.getElementById('warningModal').style.display = 'none';
+}
 </script>
 
 </body>
