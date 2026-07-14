@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentSetup = bankData[country] || bankData['Nigeria'];
 
     document.getElementById('final-amt').innerText = currentSetup.price;
-    document.getElementById('bank-name').innerText = currentSetup.bank; // Cleaned up target selection
+    document.getElementById('bank-name').innerText = currentSetup.bank;
     document.getElementById('acc-no').innerText = currentSetup.accNo;
     document.getElementById('acc-name').innerText = currentSetup.accName;
     startTimer(600, document.getElementById('timer'));
@@ -249,7 +249,9 @@ function done() {
 Please verify and activate my account.`;
 
     const safeMessage = encodeURIComponent(message);
-    const telegramUrl = `https://t.me/${telegramHandle}?text=${safeMessage}`;
+    
+    // Changed 't.me' to 'telegram.me' to bypass ISP DNS blocking issues
+    const telegramUrl = `https://telegram.me/${telegramHandle}?text=${safeMessage}`;
 
     window.location.href = telegramUrl;
 }
@@ -261,3 +263,4 @@ function closeModal() {
 
 </body>
 </html>
+
